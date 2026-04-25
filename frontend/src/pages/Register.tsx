@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/config';
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ const Register: React.FC = () => {
     setLoading(true);
 
     try {
-      await axios.post('http://localhost:3000/api/auth/register', formData);
+      await api.post('/auth/register', formData);
       navigate('/login');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Terjadi kesalahan saat pendaftaran');
